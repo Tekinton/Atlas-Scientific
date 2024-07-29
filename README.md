@@ -8,7 +8,7 @@ This Arduino sketch automates the calibration process for various Atlas Scientif
 
 1. **Automatic Detection of Previous Calibration**: The sketch checks for existing calibration data and either displays the current calibration slope or clears previous calibration data.
 2. **Multi-Point Calibration**: The user is prompted to place the sensor in different calibration solutions. The sketch waits for stable readings before executing calibration commands.
-3. **User-Friendly Interface**: The calibration process can be easily controlled through the Arduino IDE's Serial Monitor using `START` and `STOP` commands.
+3. **User-Friendly Interface**: The calibration process can be easily controlled through the Arduino IDE's Serial Monitor using commands in the file's instructions.
 
 ## Key Features
 

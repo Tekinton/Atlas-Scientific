@@ -20,35 +20,14 @@ This Arduino sketch automates the calibration process for various Atlas Scientif
 ## How to Use
 
 1. **Upload the Code**:
-   - Upload the `auto_ph_calibration_i2c_r3.ino` sketch to your Arduino Uno R3.
+   - Upload the related sketch to your Arduino Uno R3.
 
 2. **Open Serial Monitor**:
    - Open the Serial Monitor in the Arduino IDE.
    - Set the baud rate to `9600`.
 
-3. **Start Calibration**:
-   - Type `START` in the Serial Monitor and press `Send`.
-   - The program will check for any previous calibration:
-     - If there is a previous calibration, it will display the current calibration slope.
-     - If there is no previous calibration, it will clear the previous calibration.
-   - Follow the prompts to place the probe in the appropriate calibration solutions (pH 7.00, 4.00, and 10.00).
-
-4. **Calibration Process**:
-   - The program will automatically calibrate the sensor by waiting for stable readings (4 consecutive readings) and then sending the calibration commands.
-
-5. **Stop Calibration**:
-   - Type `STOP` in the Serial Monitor and press `Send` to exit the calibration process at any time and clear the calibration.
-
-## Commands
-
-- `START`: Begin the calibration process.
-- `STOP`: Stop the calibration process and clear the calibration.
-
-## Repository Contents
-
-- `Calibration_Sketch.ino`: The main Arduino sketch file for the calibration process.
-- `README.md`: Detailed instructions and information about the project.
-- `LICENSE`: License information for the project.
+3. **Follow Instruction**:
+   - Each file may have specific instructions. Please follow them.
 
 ## Credits
 

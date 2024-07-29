@@ -20,7 +20,7 @@ This Arduino sketch automates the calibration process for various Atlas Scientif
 ## How to Use
 
 1. **Upload the Code**:
-   - Upload the `Calibration_Sketch.ino` sketch to your Arduino Uno R3.
+   - Upload the `auto_ph_calibration_i2c_r3.ino` sketch to your Arduino Uno R3.
 
 2. **Open Serial Monitor**:
    - Open the Serial Monitor in the Arduino IDE.
@@ -52,9 +52,8 @@ This Arduino sketch automates the calibration process for various Atlas Scientif
 
 ## Credits
 
-- Developed by: [Your Name]
-- Email: [Your Email]
-- GitHub: [Your GitHub URL]
+- Developed by: Mehmet Tekin
+- GitHub: Tekinton
 
 ## Device Manufacturer
 

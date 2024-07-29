@@ -56,12 +56,13 @@ void setup() {
   Serial.begin(9600);
   Wire.begin();
   delay(1000);  // Wait for 1 second
-  displaySlope();
-  requestStableWindows();
+  displaySlope();  // Display the current slope of the sensor
+  requestStableWindows();  // Request the number of stable windows from the user
   Serial.println("Type 'start' to begin the calibration process or 'check' to display stability check sample.");
 }
 
 void loop() {
+  // Handle user commands
   if (Serial.available() > 0) {
     String command = Serial.readStringUntil('\n');
     command.trim();
@@ -79,6 +80,7 @@ void loop() {
 }
 
 void calibrationProcess() {
+  // Main calibration process
   restart = false;
   manualSet = false;
   Serial.println("Clearing previous calibration...");
@@ -95,6 +97,7 @@ void calibrationProcess() {
 }
 
 void midpointCalibration() {
+  // Midpoint calibration step
   Serial.println("Step 1: Midpoint Calibration");
   Serial.println("Please place the probe in pH 7.00 Calibration Solution and type 'ok'.");
   waitForUserConfirmation();
@@ -103,6 +106,7 @@ void midpointCalibration() {
 }
 
 void lowPointCalibration() {
+  // Low point calibration step
   Serial.println("Step 2: Low Point Calibration");
   Serial.println("Please place the probe in pH 4.00 Calibration Solution and type 'ok'.");
   waitForUserConfirmation();
@@ -111,6 +115,7 @@ void lowPointCalibration() {
 }
 
 void highPointCalibration() {
+  // High point calibration step
   Serial.println("Step 3: High Point Calibration");
   Serial.println("Please place the probe in pH 10.00 Calibration Solution and type 'ok'.");
   waitForUserConfirmation();
@@ -119,6 +124,7 @@ void highPointCalibration() {
 }
 
 void waitForUserConfirmation() {
+  // Wait for user confirmation to proceed
   String userInput = "";
   while (true) {
     if (Serial.available() > 0) {
@@ -135,6 +141,7 @@ void waitForUserConfirmation() {
 }
 
 void calibrate(const char* command) {
+  // Perform the calibration with stability check
   for (int i = 0; i < windowSize; i++) {
     readings[i] = 0;
   }
@@ -148,7 +155,7 @@ void calibrate(const char* command) {
     if (restart) return;  // Check for restart before sending command
 
     pH_sensor.send_read_cmd();
-    delay(1000);  // Increased delay between readings
+    delay(1000);  // Delay between readings
     pH_sensor.receive_read_cmd();
     float currentReading = pH_sensor.get_last_received_reading();
 
@@ -209,6 +216,7 @@ void calibrate(const char* command) {
 }
 
 float calculateStandardDeviation(float* data, int length) {
+  // Calculate the standard deviation of the data
   float mean = 0;
   for (int i = 0; i < length; i++) {
     mean += data[i];
@@ -223,6 +231,7 @@ float calculateStandardDeviation(float* data, int length) {
 }
 
 void displaySlope() {
+  // Display the slope of the pH sensor
   Serial.println("Displaying Slope...");
   pH_sensor.send_cmd("Slope,?");
   delay(300);
@@ -240,6 +249,7 @@ void displaySlope() {
 }
 
 void requestStableWindows() {
+  // Request the number of consecutive stable windows required from the user
   Serial.println("Enter the number of consecutive stable windows required for calibration:");
   while (true) {
     if (Serial.available() > 0) {
@@ -259,11 +269,12 @@ void requestStableWindows() {
 }
 
 void displayStabilityCheckSample() {
+  // Display a sample of the stability check
   Serial.println("Displaying a sample of stability check...");
   
   for (int i = 0; i < windowSize; i++) {
     pH_sensor.send_read_cmd();
-    delay(2000);  // Increased delay between readings
+    delay(2000);  // Delay between readings
     pH_sensor.receive_read_cmd();
     float currentReading = pH_sensor.get_last_received_reading();
     
